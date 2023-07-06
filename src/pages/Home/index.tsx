@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 import { useSelector } from 'react-redux';
 import { Card } from '../../components/CharacterCard';
 import { InputSearch } from '../../components/InputSearch';
-
+import '../../styles/styles.css';
 import { api } from '../../services/api';
 
 import { Character } from '../../types/Character.type';
@@ -80,9 +80,26 @@ export default function Home() {
           Search -
           {' '}
           <span>Star Wars</span>
+
         </h1>
       </div>
 
+      <div className="select">
+        <SelectButton
+          type="button"
+          isSelected={isFavouriteSelected === false}
+          onClick={() => setIsFavouriteSelected(false)}
+        >
+          All
+        </SelectButton>
+        <SelectButton
+          isSelected={isFavouriteSelected === true}
+          onClick={() => setIsFavouriteSelected(true)}
+        >
+          Favourites
+        </SelectButton>
+      </div>
+      <br/>
       <div className="header">
         {!isFavouriteSelected && (
           <InputSearch
@@ -91,22 +108,6 @@ export default function Home() {
             onChange={(event) => debouncedOnChange(event)}
           />
         )}
-
-        <div className="select">
-          <SelectButton
-            type="button"
-            isSelected={isFavouriteSelected === false}
-            onClick={() => setIsFavouriteSelected(false)}
-          >
-            All
-          </SelectButton>
-          <SelectButton
-            isSelected={isFavouriteSelected === true}
-            onClick={() => setIsFavouriteSelected(true)}
-          >
-            Favourites
-          </SelectButton>
-        </div>
 
         {!inputSearch && !isFavouriteSelected && (
           <div className="pagination">
@@ -210,3 +211,7 @@ export default function Home() {
     </Container>
   );
 }
+function setIsFavouriteSelected(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+
